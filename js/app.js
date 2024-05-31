@@ -161,6 +161,7 @@ const agregarDato = () => {
     let tipo = formulario["tipo"]
     let descripcion = formulario["descripcion"]
     let valor = formulario["valor"]
+
     //crear una condicion que nos evalue si los inputs estan vacios o no
     if (descripcion.value !== "" && valor.value !== ""){
         //crear dos condiciones que indiquen que tipo de accion se realizara con respecto a la etiqueta select y las options
@@ -182,8 +183,19 @@ const agregarDato = () => {
             cargarEgresos();
         }
     } else {
-        alert("favor de llenar los campos de descripcion y valor")
+        if (descripcion.value === ""){
+            descripcion.classList.add('notvalid')
+
+        } else if (valor.value === ""){
+            valor.classList.add('notvalid')    
+        } else {
+            alert("favor de llenar los campos de descripcion y valor")
+        }
     }
+    descripcion.addEventListener('keypress',() => descripcion.classList.remove('notvalid'))
+    valor.addEventListener('keypress',() => valor.classList.remove('notvalid'))
+    descripcion.addEventListener('mousedown',() => descripcion.classList.remove('notvalid'))
+
 }
 
 
